@@ -15,6 +15,11 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    private static final String[] food = {"Shrimp", "Anchovies", "Trout", "Salmon", "Tuna", "Lobster", "Swordfish", "Monkfish", "Shark"};
+    private static final String[] locations = {"Edgeville", "Catherby", "Al-Kharid"};
+    public static boolean useStove = false;
+    public static String getSelectedFood;
+    public static String getSelectedStoveLocation;
     @FXML
     ComboBox FoodComboBox;
     @FXML
@@ -35,12 +40,6 @@ public class Controller implements Initializable {
     Label startLabel;
     @FXML
     Label loadSettingsLabel;
-
-    private static final String[] food = {"Shrimp","Anchovies","Trout","Salmon","Tuna","Lobster","Swordfish","Monkfish","Shark"};
-    private static final String[] locations = {"Edgeville","Catherby","Al-Kharid"};
-    public static boolean useStove = false;
-    public static String getSelectedFood;
-    public static String getSelectedStoveLocation;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,15 +80,15 @@ public class Controller implements Initializable {
         useStoveRectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-               if(useStove == false){
-                   useStove = true;
-                   useStoveRectangle.setFill(Color.web("#ffb800"));
-                   stoveLocationComboBox.setDisable(false);
-               } else {
-                   useStove = false;
-                   useStoveRectangle.setFill(Color.web("#404040"));
-                   stoveLocationComboBox.setDisable(true);
-               }
+                if (useStove == false) {
+                    useStove = true;
+                    useStoveRectangle.setFill(Color.web("#ffb800"));
+                    stoveLocationComboBox.setDisable(false);
+                } else {
+                    useStove = false;
+                    useStoveRectangle.setFill(Color.web("#404040"));
+                    stoveLocationComboBox.setDisable(true);
+                }
             }
         });
 
@@ -158,18 +157,17 @@ public class Controller implements Initializable {
         });
 
 
-
         startLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //Set selected food
-                if(FoodComboBox.getSelectionModel().getSelectedItem().toString() != null){
+                if (FoodComboBox.getSelectionModel().getSelectedItem().toString() != null) {
                     getSelectedFood = FoodComboBox.getSelectionModel().getSelectedItem().toString();
                 }
 
                 //Set Stove Location
-                if(stoveLocationComboBox.getSelectionModel().getSelectedItem().toString() != null){
+                if (stoveLocationComboBox.getSelectionModel().getSelectedItem().toString() != null) {
                     getSelectedStoveLocation = FoodComboBox.getSelectionModel().getSelectedItem().toString();
                 }
 
@@ -177,6 +175,6 @@ public class Controller implements Initializable {
                 Stage stage = (Stage) Main.r.getScene().getWindow();
                 stage.close();
             }
-            });
+        });
     }
 }
